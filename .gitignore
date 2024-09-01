@@ -208,5 +208,6 @@ pyrightconfig.json
 
 # Test files
 meh.txt
+bytes.txt
 
 # End of https://www.toptal.com/developers/gitignore/api/python,c++

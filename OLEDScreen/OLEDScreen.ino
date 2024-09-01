@@ -7,6 +7,7 @@
 #define SCREEN_HEIGHT 64
 #define SCREEN_ADDRESS 0x3D
 #define OLED_RESET 13
+#define COLOR 1
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire1, OLED_RESET);
 
@@ -44,9 +45,9 @@ void displayText(String string){
   display.display();
 };
 
-void displayBitmap(const unsigned char *bitmapImage){
+void displayBitmap(const unsigned char *BITMAP_IMAGE){
   display.clearDisplay();
-  display.drawBitmap(0, 0, bitmapImage, SCREEN_WIDTH, SCREEN_HEIGHT, 1);
+  display.drawBitmap(0, 0, BITMAP_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, COLOR);
   display.display();
 };
 
