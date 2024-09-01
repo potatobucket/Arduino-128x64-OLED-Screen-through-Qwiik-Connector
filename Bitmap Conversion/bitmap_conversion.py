@@ -19,7 +19,7 @@ def get_pixel_data(bitmapPath: str):
     bitIndex: int = 0 + numberOfBits
     startIndex: int = 0
     pixelData: list
-    hexPixels: list = []
+    hexPixels: bytearray = []
     with Image.open(bitmapPath) as bitmap:
         width, height = bitmap.size
         if width > maxWidth or height > maxHeight:
@@ -30,7 +30,7 @@ def get_pixel_data(bitmapPath: str):
         startIndex += numberOfBits
         bitIndex += numberOfBits
     for index, group in enumerate(hexPixels):
-        hexPixels[index] = hex(int("".join(group), 2))
+        hexPixels[index] = bytes(hex(int("".join(group), 2)), encoding = "utf8")
     return hexPixels
 
 if __name__ == "__main__":
