@@ -19,10 +19,12 @@ def get_pixel_data(bitmapPath: str):
     hexPixels: list = []
     with Image.open(bitmapPath) as bitmap:
         pixelData = ["0" if pixel == 0 else "1" for pixel in bitmap.getdata()]
-    while bitIndex < len(pixelData):
+    while bitIndex <= len(pixelData):
         hexPixels.append(pixelData[startIndex:bitIndex])
         startIndex += numberOfBits
         bitIndex += numberOfBits
+    for index, group in enumerate(hexPixels):
+        hexPixels[index] = hex(int("".join(group), 2))
     return hexPixels
 
 if __name__ == "__main__":
