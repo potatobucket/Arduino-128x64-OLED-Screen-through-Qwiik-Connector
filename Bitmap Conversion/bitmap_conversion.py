@@ -2,8 +2,11 @@
 #-- TODO: Learn how to communicate with Arduino over serial connection (and maybe wifi?)
 #-- TODO: Possibly write code to automatically convert any image to correct size and 1-bit color depth and push to screen
 
+import custom_exceptions as exceptions
 from PIL import Image
 
+maxWidth = 128
+maxHeight = 64
 testImage = "OLEDScreen/Example Bitmaps/potato_bitmap.bmp"
 
 class BitmapImage:
@@ -18,6 +21,9 @@ def get_pixel_data(bitmapPath: str):
     pixelData: list
     hexPixels: list = []
     with Image.open(bitmapPath) as bitmap:
+        width, height = bitmap.size
+        if width > maxWidth or height > maxHeight:
+            raise exceptions.TooBig("This image is too large in at least one dimension. Please make sure it is 128x64 or smaller.")
         pixelData = ["0" if pixel == 0 else "1" for pixel in bitmap.getdata()]
     while bitIndex <= len(pixelData):
         hexPixels.append(pixelData[startIndex:bitIndex])
