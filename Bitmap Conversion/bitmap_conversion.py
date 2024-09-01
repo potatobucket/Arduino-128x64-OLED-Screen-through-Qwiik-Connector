@@ -34,10 +34,9 @@ def get_pixel_data(bitmapPath: str):
     return hexPixels
 
 def copy_to_clipboard(whatToCopy: bytearray):
-    with open("meh.txt", "a") as meh:
-        for bleh in whatToCopy:
-            bleh = int(bleh, 16)
-            meh.write(f"{hex(bleh)},")
+    with open("meh.txt", "w") as meh:
+        bleh: list = [f"{hex(int(blah, 16))}" for blah in whatToCopy]
+        meh.write(",".join(bleh))
 
 if __name__ == "__main__":
     testBitmap = BitmapImage(testImage, get_pixel_data(testImage))
