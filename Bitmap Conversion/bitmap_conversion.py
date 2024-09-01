@@ -10,7 +10,7 @@ maxHeight = 64
 testImage = "OLEDScreen/Example Bitmaps/potato_bitmap.bmp"
 
 class BitmapImage:
-    def __init__(self, image: str, pixelData: list = []):
+    def __init__(self, image: str, pixelData: bytearray = []):
         self.image = image
         self.pixelData = pixelData
 
@@ -33,6 +33,12 @@ def get_pixel_data(bitmapPath: str):
         hexPixels[index] = bytes(hex(int("".join(group), 2)), encoding = "utf8")
     return hexPixels
 
+def copy_to_clipboard(whatToCopy: bytearray):
+    with open("meh.txt", "a") as meh:
+        for bleh in whatToCopy:
+            bleh = int(bleh, 16)
+            meh.write(f"{hex(bleh)},")
+
 if __name__ == "__main__":
     testBitmap = BitmapImage(testImage, get_pixel_data(testImage))
-    print(testBitmap.pixelData)
+    copy_to_clipboard(testBitmap.pixelData)
