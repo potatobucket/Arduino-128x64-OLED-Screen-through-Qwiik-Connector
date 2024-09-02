@@ -53,7 +53,7 @@ def chunk_bytes(bytesToChunk: bytearray, numberOfBytesPerLine: int):
 
 def write_bytes(bytesToWrite: bytearray, variableName: str):
     """Writes the bytes as a C++ array to use with the Adafruit 128x64 OLED screen.\n
-    Will hopefully be updated to serial communication and, perhaps some day, wifi\n
+    Will hopefully be updated to serial communication and, perhaps some day, wifi
     being able to push the image to the screen."""
     newList: list = []
     with open("bytes.txt", "a") as byteWriter:
